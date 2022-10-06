@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 
+const UserService = require("../users/service/userService")
+const service = new UserService(process.env.DATA_BASE_USERS)
+
 let users = [];
 
 const registration = async ( req, res, next ) => {
@@ -16,7 +19,7 @@ const registration = async ( req, res, next ) => {
         tel: req.body.tel,
         password:hashedPasword
       }
-      users.push(user)
+      await service.addNewUser(user)
       next()
     } catch{
       res.status(500).send()
@@ -25,14 +28,12 @@ const registration = async ( req, res, next ) => {
 }
 
 const authenticationCheck = async (req, res, next ) => {
-  if (users.length === 0){
-    return res.status(404).render("failLogin.ejs",{error: "there are no users registered"})
-  }
-  const user = users.find(user => user.email === req.body.email)
+  let user = await service.findUser(req.body.email)
   if (user === undefined ) {
     return res.status(404).render("failLogin.ejs", {error: `There isnt an account with the email: ${req.body.email}`})
   }
   try{
+    user = user.toJSON()
     if(await bcrypt.compare(req.body.password, user.password)){
       const accessToken = generateAccessToken(user)
       res.cookie("token",accessToken, {
