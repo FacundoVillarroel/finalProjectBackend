@@ -1,4 +1,4 @@
-const UsersDaoFactory = require("../Daos/DaoFactoryUsers");
+const UsersDaoFactory = require("../daos/DaoFactoryUsers");
 
 const daoFactory = UsersDaoFactory.getInstance()
 
@@ -17,6 +17,14 @@ class UserService {
   
   async findUser (email) {
     return await this.users.findUser(email)
+  }
+
+  async getAllUsers() {
+    try{
+      return await this.users.getAllUsers()
+    } catch(err){
+      console.log(err);
+    }
   }
 }
 

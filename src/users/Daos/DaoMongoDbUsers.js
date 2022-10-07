@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   surname: {type:String, require:true},
   tel: {type:Number, require:true},
   password: {type:String, require:true},
-  admin: {type:String},
+  admin: {type:Boolean},
   currentCartId: {type:Number}
 })
 
@@ -23,10 +23,18 @@ class DaoMongoDbUsers {
     return instance
   }
 
+  /* async getAllUsers(){
+    try{
+      return await this.mongoClient.getAll()
+    } catch(err) {
+      console.log(err);
+    }
+  } */
+
   async addUser(user) {
     try{
-      const newUser = this.mongoClient.collection(user)
-      await newUser.save()
+      await this.mongoClient.save(user)
+      return user
     } catch (err){
       console.log(err);
     }
@@ -34,8 +42,7 @@ class DaoMongoDbUsers {
 
   async findUser (email) {
     try{
-      const user = (await this.mongoClient.collection.find({email:email}))[0]
-      return user
+      return await this.mongoClient.getById({email:email})
     } catch (err){
       console.log(err);
     }
