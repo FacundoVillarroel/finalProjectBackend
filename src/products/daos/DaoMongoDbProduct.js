@@ -40,10 +40,8 @@ class DaoMongoDbProduct {
           if (this.idCounter <= item.id ) this.idCounter = item.id + 1;
         });
       }
-      console.log("ID COUNTER",this.idCounter);
       product.id = this.idCounter
-      console.log(product);
-      await this.mongoClient.save(product)
+      return await this.mongoClient.save(product)
     } catch(err) {
       console.log(err);
     }
@@ -62,6 +60,14 @@ class DaoMongoDbProduct {
       return await this.mongoClient.getByProperty({category:category})
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  async modifyProductById(id, productUpdate) {
+    try{
+      await this.mongoClient.modifyById(id,productUpdate)
+    } catch(err) {
+      console.log(err);
     }
   }
 

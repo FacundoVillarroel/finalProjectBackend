@@ -2,7 +2,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 
 const UserService = require("../users/service/UserService")
-const service = new UserService(process.env.DATA_BASE_USERS)
+const userService = new UserService(process.env.DATA_BASE_USERS)
+
+const CartService = require("../carts/service/CartService")
+const cartService = new CartService(process.env.DATA_BASE_CARTS)
 
 const registration = async ( req, res, next ) => {
   if(req.body.password !== req.body.repeatPassword){
@@ -10,23 +13,26 @@ const registration = async ( req, res, next ) => {
   } else {
     try{
       const hashedPasword = await bcrypt.hash(req.body.password,10)
+      const idCart = await cartService.createCart(req.body.email)
       const user = {
         email: req.body.email ,
         name: req.body.name,
         surname: req.body.surname,
         tel: req.body.tel,
-        password:hashedPasword
+        password:hashedPasword,
+        currentCartId: idCart
       }
-      await service.addNewUser(user)
+
+      await userService.addNewUser(user)
       next()
-    } catch{
-      res.status(500).send()
+    } catch(err){
+      res.status(500).send({error: err})
     }
   }
 }
 
 const authenticationCheck = async (req, res, next ) => {
-  let user = await service.findUser(req.body.email)
+  let user = await userService.findUser(req.body.email)
   if (user === undefined ) {
     return res.status(404).render("failLogin.ejs", {error: `There isnt an account with the email: ${req.body.email}`})
   }

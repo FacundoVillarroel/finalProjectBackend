@@ -14,6 +14,7 @@ class ProductDaoFactory{
       case "mongoDb": return DaoMongoDbProduct.getInstance()
     }
   }
+  
 }
 
 module.exports = ProductDaoFactory

@@ -1,21 +1,42 @@
 <h1>Welcome <%=name%></h1>
 <% if (products) { %>
+  
   <br>
   <hr>
   <br>
+
   <h2>LIST OF PRODUCTS</h2>
-  <ul>
-    <% for(let i = 0; i < products.length; i++) { %>
-      <li><%= products[i].title %></li>
-    <% } %>
-  </ul>
+  <table class="d-flex flex-column">
+    <thead>
+        <tr class="d-flex justify-content-between">
+            <th style="margin-bottom: 20px; width:33.3%">Producto</th>
+            <th style="margin-bottom: 20px; width:33.3%">Precio</th>
+            <th style="margin-bottom: 20px; width:28.3%">Imagen</th>
+            <th style="margin-bottom: 20px; width:5%"></th>
+        </tr>
+    </thead>
+    <tbody id="productContainer"> 
+      <% for(let i = 0; i < products.length; i++) { %>
+        <tr class="d-flex justify-content-between">
+          <td style="margin-bottom: 20px; width:33.3%"><%=products[i].title %></td>
+          <td style="margin-bottom: 20px; width:33.3%"><%=products[i].price %></td>
+          <td style="margin-bottom: 20px; width:28.3%"><img src="<%=products[i].thumbnail %>" alt="<%=products[i].title %>" height="150" width="200"></td>
+          <td style="margin-bottom: 20px; width:5%"><button class="addToCart"> Add to cart</button></td>
+        </tr>
+      <% } %>                         
+    </tbody>
+</table>
+    
+  
 <% } else { %>
   <h2>There is no products</h2>
 <% } %>
 <% if (admin === true){ %> 
+
   <br>
   <hr>
   <br>
+
   <h2>FORM TO ADD A PRODUCT</h2>
   <form action="/products" method="post">
     <div>

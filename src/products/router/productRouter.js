@@ -17,6 +17,7 @@ productRouter.get("/:category?", authenticateToken, async ( req, res ) => {
     } else {
       const id = parseInt(caterogy)
       products = [await service.findProduct(id)]
+      if (!products[0]) res.status(404).send({error: `product with id: ${id} Not found`})  
     }
   } else {
     products = await service.getAllProducts()
@@ -29,6 +30,15 @@ productRouter.post("/", authenticateToken, isAdmin, async ( req, res ) => {
   const product = { title, price, description, category, thumbnail }
   await service.addProduct(product)
   res.send(product)
+})
+
+productRouter.put("/:id", authenticateToken, async ( req, res ) => {
+  const id = parseInt(req.params.id)
+  const { title, price, description, category, thumbnail } = req.body
+  const update = { title, price, description, category, thumbnail }
+  if(isNaN(id)) res.status(400).send({error: "id Must be a number"})
+  await service.modifyProductById(id,update)
+  res.send(update)
 })
 
 productRouter.delete("/:id", authenticateToken, isAdmin, async ( req, res ) => {

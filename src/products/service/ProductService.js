@@ -41,6 +41,14 @@ class ProductService{
     }
   }
 
+  async modifyProductById(id, productUpdate){
+    try {
+      await this.products.modifyProductById(id,productUpdate)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async deleteProduct (id) {
     try {
       await this.products.deleteProduct(id)
