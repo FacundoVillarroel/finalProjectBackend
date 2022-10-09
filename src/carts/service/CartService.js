@@ -33,10 +33,13 @@ class CartService {
 
   async addProductToCart ( idCart, idProduct, quantity ){
     try {
-      let product = await products.findProduct(idProduct)
-      product.quantity = quantity
+      let product = (await products.findProduct(idProduct))
+      if (!product) return {error: `product with id:${idProduct} not found`}
+      const productToAdd = {...product.toObject(), quantity:quantity}
       let cart = await this.carts.getCartById(idCart)
-      cart.products.push(product)
+      const alreadyInCart = cart.products.find(product => product.id == idProduct)
+      if(alreadyInCart) return {error: "The product is already in the cart"}
+      cart.products.push(productToAdd)
       await this.carts.modifyCart(idCart,cart)
     } catch (err) {
       console.log(err);
@@ -46,7 +49,7 @@ class CartService {
   async deleteProductFromCart (idcart, idProduct){
     try {
       let cart = await this.carts.getCartById(idcart)
-      const productsList = cart.products.filter(product => product.id !== idProduct)
+      const productsList = cart.products.filter(product => product.id !== parseInt(idProduct))
       cart.products = productsList
       await this.carts.modifyCart(idcart, cart)
     } catch (err) {

@@ -15,14 +15,25 @@ cartRouter.get("/", authenticateToken, async ( req, res ) => {
 })
 
 cartRouter.post("/:id", authenticateToken, async ( req, res ) => {
-  const idcart = req.user.currentCartId
-  const idProduct = req.params.id
-  const quantity = req.body.quantity
-  await service.addProductToCart( idcart, idProduct, quantity ) 
-  res.send("Product added to cart successfully ")
+  const idCart = req.user.currentCartId
+  const idProduct = parseInt(req.params.id)
+  const quantity = parseInt(req.body.quantity)
+  const response = await service.addProductToCart( idCart, idProduct, quantity ) 
+  if (response) {
+    res.status(400).send(response)
+  } else {
+    res.send("Product added to cart successfully ")
+  }
 })
 
-cartRouter.delete("/:",authenticateToken, isAdmin, async ( req, res ) => {
+cartRouter.delete("/:id", authenticateToken, async ( req, res ) => {
+  const idProd = req.params.id;
+  const idCart = req.user.currentCartId;
+  await service.deleteProductFromCart(idCart, idProd )
+  res.send("Product removed from cart")
+})
+
+cartRouter.delete("/",authenticateToken, isAdmin, async ( req, res ) => {
   const id = req.user.currentCartId
   await service.deleteCart(id)
   res.send("cart deleted successfully")

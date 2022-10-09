@@ -49,6 +49,7 @@ const authenticationCheck = async (req, res, next ) => {
       res.render("failLogin.ejs",{error: "Incorrect Password"})
     }
   }catch(err){
+    console.log(err);
     res.sendStatus(500).send()
   }
 }

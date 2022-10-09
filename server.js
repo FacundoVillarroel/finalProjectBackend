@@ -7,7 +7,10 @@ const productRouter = require("./src/products/router/productRouter");
 const cartRouter = require("./src/carts/router/cartRouter");
 
 const app = express()
+
 app.set("view-engine","ejs")
+
+app.use(express.static(__dirname + '/public'));
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended:false}))
