@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   tel: {type:Number, require:true},
   password: {type:String, require:true},
   admin: {type:Boolean},
-  currentCartId: {type:Number}
+  currentCartId: {type:Number},
+  address: {type:String}
 })
 
 let instance = null;

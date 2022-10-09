@@ -1,5 +1,5 @@
 const express = require("express");
-const cartRouter= express();
+const cartRouter= express.Router()
 
 cartRouter.use(express.json())
 
@@ -12,6 +12,13 @@ cartRouter.get("/", authenticateToken, async ( req, res ) => {
   const id = req.user.currentCartId
   const cart = await service.getCart(id)
   res.send(cart.products)
+})
+
+cartRouter.post("/", authenticateToken, async ( req, res ) => {
+  const email = req.user.email;
+  const shippingAddress = req.user.shippingAddress;
+  const cartId = await service.createCart(email, shippingAddress)
+  res.send(cartId)
 })
 
 cartRouter.post("/:id", authenticateToken, async ( req, res ) => {

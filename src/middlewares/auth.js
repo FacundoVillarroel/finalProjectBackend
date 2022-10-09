@@ -19,6 +19,7 @@ const registration = async ( req, res, next ) => {
         name: req.body.name,
         surname: req.body.surname,
         tel: req.body.tel,
+        address:req.body.address,
         password:hashedPasword,
         currentCartId: idCart
       }
@@ -93,7 +94,7 @@ const isAdmin = ( req, res, next ) => {
   if(req.user.admin){
     next()
   } else {
-    res.status(403).send({error: "You do not have the permission to delete a product"})
+    res.status(403).send({error: "You do not have admin permissions for this request"})
   } 
 }
 

@@ -17,12 +17,13 @@ class CartService {
     }
   }
   
-  async createCart (email){
+  async createCart (email, shippingAddress){
     try {
       const cart = {
         email:email,
         date: new Date(),
-        products:[]
+        products:[],
+        shippingAddress: shippingAddress
       }
       const cartCreated = await this.carts.createCart(cart)
       return cartCreated.id

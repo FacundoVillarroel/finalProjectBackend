@@ -1,5 +1,5 @@
 const express = require("express");
-const userRouter = express();
+const userRouter = express.Router()
 
 userRouter.use(express.json())
 userRouter.use(express.urlencoded({extended:false}));
