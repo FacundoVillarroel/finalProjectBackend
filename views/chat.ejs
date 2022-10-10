@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+</head>
+<body>
+  <h1>Welcome <%= name %> to the Chat platform</h1>
+
+  <br>
+  <% if(admin) {%>
+
+    <h2>Respond to an user</h2>
+    <form action="#" id="systemMessageForm">
+      <label for="systemMessage"> Write a message to the user</label>
+      <input type="text" name="systemMessage" id="systemMessage">
+      <button type="submit"> Send Response </button>
+    </form>
+
+  <% } else { %>
+
+    <h2>Send a messege to the server! </h2>
+    <form action="#" id="userMessageForm">
+      <label for="userMessage">Write a message to the system</label>
+      <input type="text" name="userMessage" id="userMessage">
+      <button type="submit"> Send Message</button>
+    </form>
+    
+  <% } %>
+
+  <div>
+    <ul id="messagesContainer">
+
+    </ul>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+    <script defer src="main.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ class UserService {
 
   async addNewUser (user) {
     try{
-      this.users.addUser(user)
+      await this.users.addUser(user)
     } catch(error) {
       console.log(error);
     }

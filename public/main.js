@@ -1,20 +1,35 @@
-const addToCart = async (id) => {
-  const input = document.getElementById(`quantity${id}`)
-  const quantity = input.value
-  if (quantity <= 0){
-    alert("quantity can't be less than 1")
-  } else {
-    const response = await fetch(`/cart/${id}`, {
-      headers:{
-          'Content-Type': 'application/json',
-          "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwibmFtZSI6ImFkbWluIiwic3VybmFtZSI6ImFkbWluIiwidGVsIjoxMjMsInBhc3N3b3JkIjoiJDJiJDEwJHdWOXJDNW9JUEpyR25YTzFZZGEuSS5RZk44T00zZ0NxTy9mNmM5MlhpRWR6a3MwZzF6c1FpIiwiYWRtaW4iOnRydWUsImlhdCI6MTY2NTI1NTQwOSwiZXhwIjoxNjY1MjU2MDA5fQ.9JpjsRFSCIyXfMvj0x2vbe1kXZVfj9_Y-253y8s7FhY"
-      },
-      method:"POST",
-      body: JSON.stringify({
-          quantity:quantity
-      })
-  })
-  console.log(response);
-  }
+const socket = io();
 
+const userForm = document.getElementById("userMessageForm")
+const inputUserMessage = document.getElementById("userMessage")
+
+userForm.addEventListener("submit", (e) => {
+  e.preventDefault()
+  const message = inputUserMessage.value
+  const userMessage = {
+    email: "fake@email.com",
+    type:"user",
+    date: new Date(),
+    message:message
+  }
+  socket.emit("new_message", userMessage)
+})
+const createTagMessage = (message) => {
+      return( `
+        <li>
+          <p>${message.email} says: ${message.message} </p>
+          <p> date: ${message.date} </p>
+        </li>
+      `)
 }
+
+const renderMessages = (messages) => {
+  const messagesList = messages.map(message => createTagMessage(message)).join(" ");
+  console.log("lista", messagesList);
+  const messageContainer = document.getElementById("messagesContainer")
+  if(messageContainer) messageContainer.innerHTML = messagesList;
+}
+
+socket.on("messages", (messages) => {
+  renderMessages(messages)
+})
