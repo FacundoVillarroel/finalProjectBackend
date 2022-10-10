@@ -14,8 +14,10 @@
 
     <h2>Respond to an user</h2>
     <form action="#" id="systemMessageForm">
+      <label for="selectEmail">Select User to answer</label>
+      <select name="selectEmail" id="selectEmail"></select>
       <label for="systemMessage"> Write a message to the user</label>
-      <input type="text" name="systemMessage" id="systemMessage">
+      <input type="text" name="systemMessage" id="systemMessage" required>
       <button type="submit"> Send Response </button>
     </form>
 
@@ -35,6 +37,8 @@
 
     </ul>
   </div>
+
+  <div style="display:none;" id="email"><%=email %></div>
 
   <script src="/socket.io/socket.io.js"></script>
     <script defer src="main.js"></script>

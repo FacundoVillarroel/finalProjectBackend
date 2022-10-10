@@ -6,7 +6,7 @@ chatRouter.use(express.json())
 const {authenticateToken} = require("../../middlewares/auth")
 
 chatRouter.get("/", authenticateToken, ( req, res ) => {
-  res.render("chat.ejs", {name:req.user.name, admin: req.user.admin})
+  res.render("chat.ejs", {name:req.user.name, admin: req.user.admin, email:req.user.email})
 })
 
 module.exports = chatRouter
