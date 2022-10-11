@@ -4,7 +4,8 @@ const jwt = require("jsonwebtoken")
 const UserService = require("../users/service/UserService")
 const userService = new UserService(process.env.DATA_BASE_USERS)
 
-const CartService = require("../carts/service/CartService")
+const CartService = require("../carts/service/CartService");
+const { sendEmailNewUser } = require("../nodemailer/helpers/helpers");
 const cartService = new CartService(process.env.DATA_BASE_CARTS)
 
 const registration = async ( req, res, next ) => {
@@ -25,6 +26,7 @@ const registration = async ( req, res, next ) => {
       }
 
       await userService.addNewUser(user)
+      sendEmailNewUser(process.env.GMAIL_ADMIN, process.env.GMAIL_RECIEVER, user )
       next()
     } catch(err){
       res.status(500).send({error: err})

@@ -7,6 +7,8 @@ const cartService = new CartService(process.env.DATA_BASE_CARTS);
 const UserService = require("../../users/service/UserService");
 const userService = new UserService(process.env.DATA_BASE_USERS);
 
+const sendEmailNewOrder = require("../../nodemailer/helpers/helpers")
+
 class OrderService {
   constructor(type) {
     this.orders = daoFactory.create(type)
@@ -19,6 +21,7 @@ class OrderService {
         await cartService.deleteCart(user.currentCartId)
         const newIdCart = await cartService.createCart(user.email, user.address)
         await userService.updateCurrentCartId(user.email, newIdCart)
+        sendEmailNewOrder(process.env.GMAIL_ADMIN, process.env.GMAIL_RECIEVER, order)
         return orderId
       }
       return {error: "error processing the purchase"}
