@@ -13,7 +13,7 @@ const registration = async ( req, res, next ) => {
   } else {
     try{
       const hashedPasword = await bcrypt.hash(req.body.password,10)
-      const idCart = await cartService.createCart(req.body.email)
+      const idCart = await cartService.createCart(req.body.email, req.body.address)
       const user = {
         email: req.body.email ,
         name: req.body.name,
@@ -74,8 +74,8 @@ const authenticateToken = ( req, res, next ) => {
       jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (!err) {
           req.user = user
-          const {email, name, surname, tel, password, admin, currentCartId} = user 
-          const accessToken = generateAccessToken({email, name, surname, tel, password, admin, currentCartId})
+          const {email, name, surname, tel, password, admin, currentCartId, address} = user 
+          const accessToken = generateAccessToken({email, name, surname, tel, password, admin, currentCartId, address})
           res.cookie("token",accessToken, {
             httpOnly:true
           })

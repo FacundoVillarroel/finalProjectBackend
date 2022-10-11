@@ -32,13 +32,17 @@
     
   <% } %>
 
-  <div>
-    <ul id="messagesContainer">
+    <% if ( !admin ) { %>
+      <a href="/chat/<%=email%>"> See only my messages </a>
+    <% } %>
 
-    </ul>
+  <div>
+    <ul id="messagesContainer"></ul>
   </div>
 
-  <div style="display:none;" id="email"><%=email %></div>
+  <a href="/products"> Go to products </a>
+
+  <div style="display:none;" id="email"><%=email%></div>
 
   <script src="/socket.io/socket.io.js"></script>
     <script defer src="main.js"></script>

@@ -18,9 +18,8 @@ orderRouter.get("/:id", authenticateToken, async ( req, res ) => {
 })
 
 orderRouter.post("/", authenticateToken, async ( req, res ) => {
-  const idCart = parseInt(req.user.currentCartId)
-  const cart = await cartService.getCart(idCart);
-  console.log(cart);
+  const user = req.user
+  const cart = await cartService.getCart(user.currentCartId);
   const order = {
     email: req.user.email,
     products: cart.products,
@@ -28,7 +27,7 @@ orderRouter.post("/", authenticateToken, async ( req, res ) => {
     date: new Date(),
     shippingAddress: cart.shippingAddress
   }
-  const orderGenerated = await service.createNewOrder(order)
+  const orderGenerated = await service.createNewOrder(order, user)
   res.send({orderId:orderGenerated.id})
 })
 

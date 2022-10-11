@@ -19,6 +19,14 @@ class UserService {
     return await this.users.findUser(email)
   }
 
+  async updateCurrentCartId(email, idCart){
+    try {
+      await this.users.modifyUser(email, {currentCartId: idCart})
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getAllUsers() {
     try{
       return await this.users.getAllUsers()

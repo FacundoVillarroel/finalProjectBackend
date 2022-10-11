@@ -2,14 +2,26 @@ const OrderDaoFactory = require("../daos/DaoFactoryOrder");
 
 const daoFactory = OrderDaoFactory.getInstance()
 
+const CartService = require("../../carts/service/CartService");
+const cartService = new CartService(process.env.DATA_BASE_CARTS);
+const UserService = require("../../users/service/UserService");
+const userService = new UserService(process.env.DATA_BASE_USERS);
+
 class OrderService {
   constructor(type) {
     this.orders = daoFactory.create(type)
   }
 
-  async createNewOrder(order) {
+  async createNewOrder(order, user) {
     try{
-      return await this.orders.createNewOrder(order)
+      const orderId = await this.orders.createNewOrder(order)
+      if(orderId) {
+        await cartService.deleteCart(user.currentCartId)
+        const newIdCart = await cartService.createCart(user.email, user.address)
+        await userService.updateCurrentCartId(user.email, newIdCart)
+        return orderId
+      }
+      return {error: "error processing the purchase"}
     } catch (err) {
       console.log(err);
     }

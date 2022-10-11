@@ -11,7 +11,7 @@ class CartService {
 
   async getCart (id){
     try {
-      return await this.carts.getCartById(id)
+      return await this.carts.getCartById(parseInt(id))
     } catch (err) {
       console.log(err);
     }

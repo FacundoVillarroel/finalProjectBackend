@@ -24,13 +24,13 @@ class DaoMongoDbUsers {
     return instance
   }
 
-  /* async getAllUsers(){
+  async getAllUsers(){
     try{
       return await this.mongoClient.getAll()
     } catch(err) {
       console.log(err);
     }
-  } */
+  }
 
   async addUser(user) {
     try{
@@ -45,6 +45,14 @@ class DaoMongoDbUsers {
     try{
       return await this.mongoClient.getById({email:email})
     } catch (err){
+      console.log(err);
+    }
+  }
+
+  async modifyUser(email, update) {
+    try {
+      return await this.mongoClient.modifyById(email, update)
+    } catch (err) {
       console.log(err);
     }
   }
