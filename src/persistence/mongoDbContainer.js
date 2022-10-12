@@ -1,4 +1,5 @@
 const mongoose = require ("mongoose");
+const logger = require("../logs/logger");
 
 class MongoDbContainer {
 
@@ -14,7 +15,7 @@ class MongoDbContainer {
     try{
       return await this.collection.find()
     } catch(err){
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -24,7 +25,7 @@ class MongoDbContainer {
       await itemToAdd.save()
       return(item)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -32,7 +33,7 @@ class MongoDbContainer {
     try {
       return (await this.collection.find(id))[0]
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -40,7 +41,7 @@ class MongoDbContainer {
     try {
       return (await this.collection.find(property))
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -49,7 +50,7 @@ class MongoDbContainer {
       await this.collection.updateOne({id:id},{$set:{...update}})
       return update
     } catch(err){
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -57,7 +58,7 @@ class MongoDbContainer {
     try{
       await this.collection.deleteOne(id)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -65,7 +66,7 @@ class MongoDbContainer {
     try {
       await this.collection.deleteMany()
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

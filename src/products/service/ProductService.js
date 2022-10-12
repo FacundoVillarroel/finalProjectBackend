@@ -1,4 +1,5 @@
 const ProductDaoFactory = require("../daos/DaoFactoryProduct");
+const logger = require("../../logs/logger");
 
 const daoFactory = ProductDaoFactory.getInstance()
 
@@ -11,7 +12,7 @@ class ProductService{
     try {
       return await this.products.getAllProducts()
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -21,7 +22,7 @@ class ProductService{
       if(isNaN(idNumber)) return {error: "Id must be a number"}
       return await this.products.findProduct(id)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -29,7 +30,7 @@ class ProductService{
     try {
       return await this.products.filterByCategory(category)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -37,7 +38,7 @@ class ProductService{
     try {
       await this.products.addProduct(product)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -45,7 +46,7 @@ class ProductService{
     try {
       await this.products.modifyProductById(id,productUpdate)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -53,7 +54,7 @@ class ProductService{
     try {
       await this.products.deleteProduct(id)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -61,7 +62,7 @@ class ProductService{
     try {
       await this.products.deleteAllProducts()
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

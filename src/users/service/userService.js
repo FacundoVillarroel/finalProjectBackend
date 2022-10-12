@@ -1,4 +1,5 @@
 const UsersDaoFactory = require("../daos/DaoFactoryUsers");
+const logger = require("../../logs/logger");
 
 const daoFactory = UsersDaoFactory.getInstance()
 
@@ -11,19 +12,23 @@ class UserService {
     try{
       await this.users.addUser(user)
     } catch(error) {
-      console.log(error);
+      logger.error(`Error: ${err}`)
     }
   }
   
   async findUser (email) {
-    return await this.users.findUser(email)
+    try {
+      return await this.users.findUser(email)
+    } catch (err) {
+      logger.error(`Error: ${err}`)
+    }
   }
 
   async updateCurrentCartId(email, idCart){
     try {
       await this.users.modifyUser(email, {currentCartId: idCart})
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -31,7 +36,7 @@ class UserService {
     try{
       return await this.users.getAllUsers()
     } catch(err){
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

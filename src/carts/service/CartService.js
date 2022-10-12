@@ -1,6 +1,7 @@
 const CartDaoFactory = require("../daos/DaoFactoryCarts");
 const ProductService = require("../../products/service/ProductService")
 const products = new ProductService(process.env.DATA_BASE_PRODUCTS)
+const logger = require("../../logs/logger");
 
 const daoFactory = CartDaoFactory.getInstance();
 
@@ -13,7 +14,7 @@ class CartService {
     try {
       return await this.carts.getCartById(parseInt(id))
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
   
@@ -28,7 +29,7 @@ class CartService {
       const cartCreated = await this.carts.createCart(cart)
       return cartCreated.id
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -43,7 +44,7 @@ class CartService {
       cart.products.push(productToAdd)
       await this.carts.modifyCart(idCart,cart)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -54,7 +55,7 @@ class CartService {
       cart.products = productsList
       await this.carts.modifyCart(idcart, cart)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -62,7 +63,7 @@ class CartService {
     try {
       await this.carts.deleteCart(id)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 

@@ -14,9 +14,12 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-const socketServer = require("./src/chat/socket.io/socketServer")
+const socketServer = require("./src/chat/socket.io/socketServer");
+const reqInfo = require("./src/logs/reqInfo");
 
 app.set("view-engine","ejs")
+
+app.use(reqInfo)
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.json())

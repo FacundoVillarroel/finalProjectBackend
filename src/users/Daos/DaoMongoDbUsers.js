@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const MongoDbContainer = require("../../persistence/mongoDbContainer");
+const logger = require("../../logs/logger");
 
 const userSchema = new mongoose.Schema({
   email:{type: String, require:true, unique:true},
@@ -28,7 +29,7 @@ class DaoMongoDbUsers {
     try{
       return await this.mongoClient.getAll()
     } catch(err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -37,7 +38,7 @@ class DaoMongoDbUsers {
       await this.mongoClient.save(user)
       return user
     } catch (err){
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   } 
 
@@ -45,7 +46,7 @@ class DaoMongoDbUsers {
     try{
       return await this.mongoClient.getById({email:email})
     } catch (err){
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -53,7 +54,7 @@ class DaoMongoDbUsers {
     try {
       return await this.mongoClient.modifyById(email, update)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

@@ -1,4 +1,5 @@
 const MessagesDaoFactory = require ("../daos/DaoFactoryMessages");
+const logger = require("../../logs/logger");
 
 const daoFactory = MessagesDaoFactory.getInstance()
 
@@ -11,7 +12,7 @@ class MessagesService {
     try {
       return await this.messages.addMessage(message)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -19,7 +20,7 @@ class MessagesService {
     try {
       return await this.messages.getAllMessages()
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -27,7 +28,7 @@ class MessagesService {
     try {
       return await this.messages.getMessagesByEmail(email)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

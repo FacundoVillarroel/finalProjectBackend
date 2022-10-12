@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const MongoDbContainer = require("../../persistence/mongoDbContainer");
+const logger = require("../../logs/logger");
 
 const messageSchema = new mongoose.Schema({
   email:{type:String, require: true},
@@ -25,7 +26,7 @@ class DaoMongoDbMessages {
       await this.mongoClient.save(message)
       return message
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -33,7 +34,7 @@ class DaoMongoDbMessages {
     try {
       return await this.mongoClient.getAll()
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -41,7 +42,7 @@ class DaoMongoDbMessages {
     try {
       return await this.mongoClient.getByProperty({email:email})
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
   

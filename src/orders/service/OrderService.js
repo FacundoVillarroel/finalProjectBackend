@@ -1,4 +1,5 @@
 const OrderDaoFactory = require("../daos/DaoFactoryOrder");
+const logger = require("../../logs/logger");
 
 const daoFactory = OrderDaoFactory.getInstance()
 
@@ -26,7 +27,7 @@ class OrderService {
       }
       return {error: "error processing the purchase"}
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -36,7 +37,7 @@ class OrderService {
       if(isNaN(orderId)) return {error: "Id must be a number"}
       return await this.orders.getOrderById(orderId)
     } catch (err) {
-      console.log(err)
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -45,7 +46,7 @@ class OrderService {
       if( isNaN( parseInt(id) )) return {error: "Id must be a number"}
       return await this.orders.deleteOrderById(id)
     } catch (err) {
-      console.log(err)
+      logger.error(`Error: ${err}`)
     }
   }
 }

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const MongoDbContainer = require("../../persistence/mongoDbContainer");
+const logger = require("../../logs/logger");
 
 const ordersSchema = new mongoose.Schema({
   id:{type:Number, require:true, unique:true},
@@ -35,7 +36,7 @@ class DaoMongoDbOrders {
       order.id = this.idCounter
       return await this.mongoClient.save(order)
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -43,7 +44,7 @@ class DaoMongoDbOrders {
     try {
       return await this.mongoClient.getByProperty({id:id})
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 
@@ -51,7 +52,7 @@ class DaoMongoDbOrders {
     try {
       return await this.mongoClient.deleteById({id:id})
     } catch (err) {
-      console.log(err);
+      logger.error(`Error: ${err}`)
     }
   }
 }

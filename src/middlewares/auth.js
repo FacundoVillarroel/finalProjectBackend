@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
+const logger = require("../logs/logger");
 
 const UserService = require("../users/service/UserService")
 const userService = new UserService(process.env.DATA_BASE_USERS)
@@ -29,17 +30,18 @@ const registration = async ( req, res, next ) => {
       sendEmailNewUser(process.env.GMAIL_ADMIN, process.env.GMAIL_RECIEVER, user )
       next()
     } catch(err){
+      logger.error(`Error: ${err}`)
       res.status(500).send({error: err})
     }
   }
 }
 
 const authenticationCheck = async (req, res, next ) => {
-  let user = await userService.findUser(req.body.email)
-  if (user === undefined ) {
-    return res.status(404).render("failLogin.ejs", {error: `There isnt an account with the email: ${req.body.email}`})
-  }
   try{
+    let user = await userService.findUser(req.body.email)
+    if (user === undefined ) {
+      return res.status(404).render("failLogin.ejs", {error: `There isnt an account with the email: ${req.body.email}`})
+    }
     user = user.toJSON()
     if(await bcrypt.compare(req.body.password, user.password)){
       const accessToken = generateAccessToken(user)
@@ -52,7 +54,7 @@ const authenticationCheck = async (req, res, next ) => {
       res.render("failLogin.ejs",{error: "Incorrect Password"})
     }
   }catch(err){
-    console.log(err);
+    logger.error(`Error: ${err}`)
     res.sendStatus(500).send()
   }
 }
