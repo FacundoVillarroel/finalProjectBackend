@@ -3,3 +3,5 @@
 [2022-10-13T12:31:06.448] [ERROR] development - Error: TypeError: this.getByProperty is not a function
 [2022-10-13T12:31:18.881] [ERROR] development - Error: TypeError: this.getByProperty is not a function
 [2022-10-13T12:34:26.454] [ERROR] development - Error: ReferenceError: logger is not defined
+[2022-10-13T14:05:09.842] [ERROR] development - Error: ReferenceError: Cannot access 'message' before initialization
+[2022-10-13T14:05:41.236] [ERROR] development - Error: ReferenceError: Cannot access 'message' before initialization

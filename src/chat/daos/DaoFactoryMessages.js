@@ -1,4 +1,5 @@
-const DaoMongoDbMessages = require("./DaoMongoDbMessages")
+const DaoMongoDbMessages = require("./DaoMongoDbMessages");
+const DaoMemoryMessages = require("./DaoMemoryMessages");
 
 let instance = null;
 
@@ -11,7 +12,8 @@ class MessagesDaoFactory{
 
   create(type) {
     switch(type){
-      case "mongoDb": return DaoMongoDbMessages.getInstance()
+      case "mongoDb": return DaoMongoDbMessages.getInstance();
+      case "memory" : return DaoMemoryMessages.getInstance();
     }
   }
 }

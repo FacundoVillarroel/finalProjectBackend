@@ -3,13 +3,12 @@ const service = new MessagesService (process.env.DATA_BASE_MESSAGES)
 
 const socketServer = async ( io, socket ) => {
   
-  let messages = await service.getAllMessages()
-  socket.emit("messages", messages)
+  socket.emit("messages", await service.getAllMessages())
 
   socket.on("new_message", async ( message ) => {
+    console.log("new_message Socket");
     await service.addMessage(message)
-    messages.push(message)
-    io.sockets.emit("messages", messages)
+    io.sockets.emit("messages", await service.getAllMessages())
   })
 }
 

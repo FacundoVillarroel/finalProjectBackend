@@ -12,31 +12,39 @@ if(userForm){
     e.preventDefault()
   
     const messageContent = inputUserMessage.value
-    const userMessage = {
-      email:email,
-      type:"user",
-      date: new Date(),
-      message:messageContent
+    if (messageContent === "") {
+      alert ("The message can not be empty")
+    } else {
+      const userMessage = {
+        email:email,
+        type:"user",
+        date: new Date(),
+        message:messageContent
+      }
+      socket.emit("new_message", userMessage)
+      inputUserMessage.value = ""
     }
-    socket.emit("new_message", userMessage)
-    inputUserMessage.value = ""
   })
 }
 
 if(systemForm) {
   systemForm.addEventListener("submit", (e) => {
     e.preventDefault()
+
     const emailToAnswer = selectEmail.value
     const messageContent = inputSystemMessage.value
-    const systemMessage = {
-      email: emailToAnswer,
-      type: "system",
-      date: new Date(),
-      message: messageContent
+    if (emailToAnswer === "") {
+      alert ("Must select an email to answer") 
+    } else {
+      const systemMessage = {
+        email: emailToAnswer,
+        type: "system",
+        date: new Date(),
+        message: messageContent
+      }
+      socket.emit("new_message", systemMessage);
+      inputSystemMessage.value = "";
     }
-    socket.emit("new_message", systemMessage);
-    selectEmail.value = "";
-    inputSystemMessage.value = "";
   })
 }
 

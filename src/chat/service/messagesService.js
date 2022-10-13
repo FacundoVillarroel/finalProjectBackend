@@ -10,6 +10,7 @@ class MessagesService {
 
   async addMessage (message) {
     try {
+      console.log("addMessage Service");
       return await this.messages.addMessage(message)
     } catch (err) {
       logger.error(`Error: ${err}`)
