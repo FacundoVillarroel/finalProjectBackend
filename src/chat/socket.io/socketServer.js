@@ -2,7 +2,7 @@ const MessagesService = require("../service/MessagesService");
 const service = new MessagesService (process.env.DATA_BASE_MESSAGES)
 
 const socketServer = async ( io, socket ) => {
-  console.log("User connected");
+  
   let messages = await service.getAllMessages()
   socket.emit("messages", messages)
 
