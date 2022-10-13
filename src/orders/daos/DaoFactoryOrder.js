@@ -1,4 +1,5 @@
 const DaoMongoDbOrders = require("./DaoMongoDbOrders");
+const DaoMemoryOrders = require("./DaoMemoryOrders");
 
 let instance = null; 
 
@@ -11,7 +12,8 @@ class OrderDaoFactory{
 
   create(type){
     switch(type){
-      case "mongoDb": return DaoMongoDbOrders.getInstance()
+      case "mongoDb": return DaoMongoDbOrders.getInstance();
+      case "memory" : return DaoMemoryOrders.getInstance();
     }
   }
 }

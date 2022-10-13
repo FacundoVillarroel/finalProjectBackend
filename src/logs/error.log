@@ -5,3 +5,4 @@
 [2022-10-13T12:34:26.454] [ERROR] development - Error: ReferenceError: logger is not defined
 [2022-10-13T14:05:09.842] [ERROR] development - Error: ReferenceError: Cannot access 'message' before initialization
 [2022-10-13T14:05:41.236] [ERROR] development - Error: ReferenceError: Cannot access 'message' before initialization
+[2022-10-13T14:33:17.995] [ERROR] development - Error: TypeError: sendEmailNewOrder is not a function

@@ -79,3 +79,4 @@
 [2022-10-13T14:15:29.698] [WARN] development - Route: /favicon.ico Method: GET No Implemented
 [2022-10-13T14:15:44.887] [WARN] development - Route: /favicon.ico Method: GET No Implemented
 [2022-10-13T14:16:15.306] [WARN] development - Route: /favicon.ico Method: GET No Implemented
+[2022-10-13T14:33:17.995] [ERROR] development - Error: TypeError: sendEmailNewOrder is not a function
