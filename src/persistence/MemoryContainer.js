@@ -4,7 +4,7 @@ class MemoryContainer {
   
   constructor(){
     this.idCounter = 0;
-    this.array = [];
+    this.array = [{"_id":"63457bf5aab362bd94a2adcb","email":"test@gmail.com","name":"Test","surname":"first","tel":12345678,"password":"$2b$10$sUATkgPFh/nHUKCLrmi1Be.RLg8ZYl/fN2yb67s0bbRq3MpOdNJHa","currentCartId":2,"address":"Av. siempreviva","__v":0}]
   }
 
   getAll() {
@@ -15,9 +15,9 @@ class MemoryContainer {
     }
   }
 
-  getById (id) {
+  getBy (searchParam,id) {
     try {
-      return this.array.find( item => item.id === id)
+      return this.array.find( item => item[searchParam] === id)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -42,10 +42,10 @@ class MemoryContainer {
     }
   }
 
-  modifyById(id, update) {
+  modifyBy(searchParam, id, update) {
     try {
       let response = {modified: true, matched:true}
-      const index = this.array.findIndex( item => item.id === id)
+      const index = this.array.findIndex( item => item[searchParam] === id)
       if(index === -1) response.matched = false
       this.array[index] = {...update, id:id}
       return response

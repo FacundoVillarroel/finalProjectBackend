@@ -1,4 +1,5 @@
-const DaoMongoDbUsers = require("./DaoMongoDbUsers")
+const DaoMongoDbUsers = require("./DaoMongoDbUsers");
+const DaoMemoryUsers = require("./DaoMemoryUsers");
 
 let instance = null;
 
@@ -11,7 +12,8 @@ class UsersDaoFactory{
 
   create(type) {
     switch(type){
-      case "mongoDb": return DaoMongoDbUsers.getInstance()
+      case "mongoDb": return DaoMongoDbUsers.getInstance();
+      case "memory" : return DaoMemoryUsers.getInstance();
     }
   }
 }

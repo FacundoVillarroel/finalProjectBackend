@@ -4,7 +4,9 @@ const userRouter = express.Router()
 userRouter.use(express.json())
 userRouter.use(express.urlencoded({extended:false}));
 
-const {registration, authenticationCheck, authenticateToken} = require("../../middlewares/auth")
+const {registration, authenticationCheck, authenticateToken} = require("../../middlewares/auth");
+const UserService = require("../service/UserService");
+const userService = new UserService(process.env.DATA_BASE_USERS)
 
 userRouter.get("/" , authenticateToken , ( req, res ) => {
     res.redirect("/products")

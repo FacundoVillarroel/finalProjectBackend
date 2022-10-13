@@ -44,7 +44,8 @@ class DaoMongoDbUsers {
 
   async findUser (email) {
     try{
-      return await this.mongoClient.getById({email:email})
+      let user = await this.mongoClient.getById({email:email})
+      return user.toJSON()
     } catch (err){
       logger.error(`Error: ${err}`)
     }

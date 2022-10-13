@@ -16,6 +16,7 @@ const registration = async ( req, res, next ) => {
     try{
       const hashedPasword = await bcrypt.hash(req.body.password,10)
       const idCart = await cartService.createCart(req.body.email, req.body.address)
+      console.log(idCart);
       const user = {
         email: req.body.email ,
         name: req.body.name,
@@ -42,7 +43,7 @@ const authenticationCheck = async (req, res, next ) => {
     if (user === undefined ) {
       return res.status(404).render("failLogin.ejs", {error: `There isnt an account with the email: ${req.body.email}`})
     }
-    user = user.toJSON()
+    
     if(await bcrypt.compare(req.body.password, user.password)){
       const accessToken = generateAccessToken(user)
       res.clearCookie("token")
@@ -54,6 +55,7 @@ const authenticationCheck = async (req, res, next ) => {
       res.render("failLogin.ejs",{error: "Incorrect Password"})
     }
   }catch(err){
+    console.log(err);
     logger.error(`Error: ${err}`)
     res.sendStatus(500).send()
   }

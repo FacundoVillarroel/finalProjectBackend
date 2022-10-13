@@ -12,3 +12,45 @@
 [2022-10-13T15:04:45.628] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createNewOrder')
 [2022-10-13T15:05:44.155] [ERROR] development - Error: TypeError: sendEmailNewOrder is not a function
 [2022-10-13T15:12:47.646] [ERROR] development - Error: TypeError: sendEmailNewOrder is not a function
+[2022-10-13T15:31:37.264] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'findUser')
+[2022-10-13T15:31:54.449] [ERROR] development - Error: ReferenceError: err is not defined
+[2022-10-13T15:33:11.003] [ERROR] development - Error: ReferenceError: err is not defined
+[2022-10-13T15:33:38.441] [ERROR] development - Error: ReferenceError: err is not defined
+[2022-10-13T15:33:59.832] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'addUser')
+[2022-10-13T15:34:09.078] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'findUser')
+[2022-10-13T15:34:51.003] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'addUser')
+[2022-10-13T15:34:53.463] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'findUser')
+[2022-10-13T15:37:50.133] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:39:39.983] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:40:50.134] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:41:31.003] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:42:34.472] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:42:47.688] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:42:50.301] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:43:28.052] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:44:29.130] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:45:05.914] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:45:23.353] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:46:53.666] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:48:23.402] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:50:05.530] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:50:06.645] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getAllUsers')
+[2022-10-13T15:51:00.908] [ERROR] development - Error: TypeError: user.toJSON is not a function
+[2022-10-13T15:59:08.670] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:00:52.187] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createCart')
+[2022-10-13T16:00:53.905] [ERROR] development - Error: TypeError: user.toJSON is not a function
+[2022-10-13T16:02:16.637] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createCart')
+[2022-10-13T16:07:39.481] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createCart')
+[2022-10-13T16:08:01.477] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:08:14.960] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:10:19.384] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:11:08.350] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:18:46.800] [ERROR] development - Error: TypeError: this.array.find is not a function
+[2022-10-13T16:19:16.463] [ERROR] development - Error: TypeError: user.toJSON is not a function
+[2022-10-13T16:19:39.283] [ERROR] development - Error: TypeError: user.toJSON is not a function
+[2022-10-13T16:20:39.577] [ERROR] development - Error: Error: data and hash arguments required
+[2022-10-13T16:20:54.261] [ERROR] development - Error: Error: data and hash arguments required
+[2022-10-13T16:21:52.169] [ERROR] development - Error: Error: Expected "payload" to be a plain object.
+[2022-10-13T16:26:49.183] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createCart')
+[2022-10-13T16:27:02.030] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'getCartById')
+[2022-10-13T16:29:23.435] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'createCart')

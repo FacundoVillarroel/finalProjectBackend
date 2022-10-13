@@ -31,7 +31,7 @@ class DaoMemoryProducts {
 
   findProduct ( id ){
     try {
-      return this.memoryClient.getById( id )
+      return this.memoryClient.getBy("id", id )
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -47,7 +47,7 @@ class DaoMemoryProducts {
 
   modifyProductById(id, productUpdate ) {
     try {
-      return this.memoryClient.modifyById(id, productUpdate)
+      return this.memoryClient.modifyBy("id", id, productUpdate)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

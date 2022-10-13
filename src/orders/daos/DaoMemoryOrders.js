@@ -23,7 +23,7 @@ class DaoMemoryOrders {
 
   getOrderById ( id ) {
     try {
-      return this.memoryClient.getById( id )
+      return this.memoryClient.getBy("id", id )
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

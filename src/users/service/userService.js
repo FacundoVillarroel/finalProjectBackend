@@ -11,7 +11,7 @@ class UserService {
   async addNewUser (user) {
     try{
       await this.users.addUser(user)
-    } catch(error) {
+    } catch(err) {
       logger.error(`Error: ${err}`)
     }
   }
@@ -34,8 +34,9 @@ class UserService {
 
   async getAllUsers() {
     try{
-      return await this.users.getAllUsers()
+      return this.users.getAllUsers()
     } catch(err){
+      console.log(err);
       logger.error(`Error: ${err}`)
     }
   }

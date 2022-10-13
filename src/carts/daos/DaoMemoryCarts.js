@@ -15,7 +15,7 @@ class DaoMemoryCarts {
 
   getCartById(id){
     try {
-      return this.memoryClient.getById( id )
+      return this.memoryClient.getBy("id", id )
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -31,7 +31,7 @@ class DaoMemoryCarts {
 
   modifyCart( id, cartUpdate ){
     try {
-      return this.memoryClient.modifyById( id, cartUpdate)
+      return this.memoryClient.modifyBy("id", id, cartUpdate)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
