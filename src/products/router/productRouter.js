@@ -37,8 +37,8 @@ productRouter.put("/:id", authenticateToken, async ( req, res ) => {
   const { title, price, description, category, thumbnail } = req.body
   const update = { title, price, description, category, thumbnail }
   if(isNaN(id)) res.status(400).send({error: "id Must be a number"})
-  await service.modifyProductById(id,update)
-  res.send(update)
+  const response = await service.modifyProductById(id,update)
+  res.send(response)
 })
 
 productRouter.delete("/:id", authenticateToken, isAdmin, async ( req, res ) => {

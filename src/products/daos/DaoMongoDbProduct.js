@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MongoDbContainer = require("../../persistence/mongoDbContainer");
+const MongoDbContainer = require("../../persistence/MongoDbContainer");
 const logger = require("../../logs/logger");
 
 const productSchema = new mongoose.Schema({
@@ -66,7 +66,11 @@ class DaoMongoDbProduct {
 
   async modifyProductById(id, productUpdate) {
     try{
-      await this.mongoClient.modifyById(id,productUpdate)
+      const response = await this.mongoClient.modifyById(id,productUpdate)
+      const modified = response.modifiedCount !== 0;
+      const matched = response.matchedCount !== 0;
+      console.log(modified, matched);
+      return ({modified, matched})
     } catch(err) {
       logger.error(`Error: ${err}`)
     }

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MongoDbContainer = require("../../persistence/mongoDbContainer");
+const MongoDbContainer = require("../../persistence/MongoDbContainer");
 const logger = require("../../logs/logger");
 
 const cartSchema = new mongoose.Schema({

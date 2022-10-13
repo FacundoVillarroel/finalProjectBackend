@@ -1,0 +1,5 @@
+[2022-10-13T12:24:39.602] [ERROR] development - Error: TypeError: this.products.filterByCategory is not a function
+[2022-10-13T12:30:38.564] [ERROR] development - Error: ReferenceError: logger is not defined
+[2022-10-13T12:31:06.448] [ERROR] development - Error: TypeError: this.getByProperty is not a function
+[2022-10-13T12:31:18.881] [ERROR] development - Error: TypeError: this.getByProperty is not a function
+[2022-10-13T12:34:26.454] [ERROR] development - Error: ReferenceError: logger is not defined

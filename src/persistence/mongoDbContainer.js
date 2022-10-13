@@ -47,8 +47,7 @@ class MongoDbContainer {
 
   async modifyById(id,update) {
     try{
-      await this.collection.updateOne({id:id},{$set:{...update}})
-      return update
+      return await this.collection.updateOne({id:id},{$set:{...update}})
     } catch(err){
       logger.error(`Error: ${err}`)
     }

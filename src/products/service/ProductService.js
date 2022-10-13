@@ -44,7 +44,10 @@ class ProductService{
 
   async modifyProductById(id, productUpdate){
     try {
-      await this.products.modifyProductById(id,productUpdate)
+      const response = await this.products.modifyProductById(id,productUpdate)
+      if (!response.matched) return {error: `there is no product with the id ${id}`}
+      if (!response.modified) return {error: `product update was the same as the current product`}
+      return {updatedProduct: productUpdate}
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
