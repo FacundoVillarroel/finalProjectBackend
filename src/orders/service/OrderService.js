@@ -8,7 +8,7 @@ const cartService = new CartService(process.env.DATA_BASE_CARTS);
 const UserService = require("../../users/service/UserService");
 const userService = new UserService(process.env.DATA_BASE_USERS);
 
-const sendEmailNewOrder = require("../../nodemailer/helpers/helpers")
+const {sendEmailNewOrder} = require("../../nodemailer/helpers/helpers")
 
 class OrderService {
   constructor(type) {
