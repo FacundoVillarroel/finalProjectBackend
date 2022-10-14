@@ -9,26 +9,42 @@
   <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <h1> List of messages of <%= email %> </h1>
-  <ul>
-    <% messages.map( (message) => { %>
-      <% if (message.type === "user") { %>
-        <li style= "display: flex; width:50%; justify-content: space-around">
-          <p><%=message.email%> : <%=message.message%> </p>
-          <p> date: <%=message.date%> </p>
-        </li>
-      <% } else { %>
-        <hr>
-        <li style= "display: flex; width:50%; justify-content: space-around">
-          <p> System: <%=message.message%> </p>
-          <p> date: <%=message.date%> - answered to <%=message.email%> </p>
-        </li>
-        <hr>
-      <% } %>
-    <% }) %>
-    
-    <a href="/chat"> Go to all messages </a>
-
-  </ul>
+  <div class="container">
+    <div class="navBar my-5">
+      <h1> List of messages of <%= email %> </h1>
+      <a href="/logout"> Logout </a>
+    </div>
+    <ul id="messagesContainer">
+      <% messages.map( (message) => { %>
+        <% if (message.type === "user") { %>
+          <li class="messageContainer">
+            <div class="message">
+              <div class="green"><%=message.email%> :</div> <div> <%=message.message%> </div>
+            </div>
+            <div class="message">
+              <div class="green"> date: </div> <div> <%=message.date%> </div>
+            </div>
+          </li>
+        <% } else { %>
+          <li class="messageContainer">
+            <div class="message">
+              <div class="green"> System: </div> <div> <%=message.message%> </div>
+            </div>
+            <div class="message">
+              <div class="brown"> To: <%=message.email%> </div>
+            </div>
+            <div class="message">
+              <div class="green"> date: </div> <div> <%=message.date%> </div>
+            </div>
+          </li>
+        <% } %>
+      <% }) %>
+      
+      <div class="links">
+        <a href="/chat"> Go to all messages </a>
+      </div>
+  
+    </ul>
+  </div>
 </body>
 </html>

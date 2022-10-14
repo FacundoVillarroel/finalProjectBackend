@@ -51,19 +51,29 @@ if(systemForm) {
 const createTagMessage = (message) => {
   if (message.type === "user"){
     return( `
-      <li style= "display: flex; width:50%; justify-content: space-around">
-        <p>${message.email}: ${message.message} </p>
-        <p style="margin-left: 20px"> date: ${message.date} </p>
+      <li class="messageContainer">
+        <div class="message">
+          <div class="green">${message.email}:</div> <div>${message.message}</div>
+        </div>
+        <div class="message">
+          <div class="green"> date:</div> <div>${message.date}</div>
+        </div>
       </li>
     `)
   } else {
     return ( `
-    <hr>
-    <li style= "display: flex; width:50%; justify-content: space-around">
-      <p> System: ${message.message} </p>
-      <p> date: ${message.date} - answered to ${message.email} </p>
+    <li class="messageContainer">
+      <div class="message"> 
+        <div class="green">System:</div> <div>${message.message}</div> 
+      </div>
+      <div class="message">
+        <div class="brown"> To: ${message.email}</div> 
+      </div>
+      <div class="message">
+        <div class="green">date:</div> <div> ${message.date}</div>
+      </div>
+      
     </li>
-    <hr>
   `)
   }
 }

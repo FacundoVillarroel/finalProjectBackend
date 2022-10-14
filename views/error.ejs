@@ -9,7 +9,13 @@
   <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <h1>Error processing the request</h1>
-  <p>Route: <%=error.originalUrl%> Method: <%=error.method%> No Implemented</p>
+  <div class="container">
+    <h1>Error processing the request</h1>
+    <h3 class="my-5 py-5 brown">Route: <%=error.originalUrl%> Method: <%=error.method%> No Implemented</h3>
+
+    <div class="links">
+      <a href="/products"> Go to Products</a>
+    </div>
+  </div>
 </body>
 </html>

@@ -9,44 +9,53 @@
   <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <h1>Welcome <%= name %> to the Chat platform</h1>
-
-  <br>
-  <% if(admin) {%>
-
-    <h2>Respond to an user</h2>
-    <form action="#" id="systemMessageForm">
-      <label for="selectEmail">Select User to answer</label>
-      <select name="selectEmail" id="selectEmail"></select>
-      <label for="systemMessage"> Write a message to the user</label>
-      <input type="text" name="systemMessage" id="systemMessage" required>
-      <button type="submit"> Send Response </button>
-    </form>
-
-  <% } else { %>
-
-    <h2>Send a messege to the server! </h2>
-    <form action="#" id="userMessageForm">
-      <label for="userMessage">Write a message to the system</label>
-      <input type="text" name="userMessage" id="userMessage">
-      <button type="submit"> Send Message</button>
-    </form>
-    
-  <% } %>
-
-    <% if ( !admin ) { %>
-      <a href="/chat/<%=email%>"> See only my messages </a>
+  <div class="container">
+    <div class="navBar">
+      <h1>Welcome <%= name %></h1>
+      <a href="/logout"> Logout </a>
+    </div>
+    <h2>Chat</h2>
+  
+    <% if(admin) {%>
+  
+      <h3>Answer to an user</h3>
+      <form action="#" id="systemMessageForm">
+        <div class="formInput">
+          <label for="selectEmail">Select User to answer</label>
+          <select name="selectEmail" id="selectEmail"></select>
+        </div>
+        <div class="formInput">
+          <label for="systemMessage"> Write a message to the user</label>
+          <input type="text" name="systemMessage" id="systemMessage" required>
+        </div>
+        <button type="submit" class="btnSubmit"> Send Response </button>
+      </form>
+  
+    <% } else { %>
+  
+      <h3 class="my-5">Send a messege to the server! </h3>
+      <form action="#" id="userMessageForm" class="my-5">
+        <div class="formInput">
+          <label for="userMessage">Write a message to the system</label>
+          <input type="text" name="userMessage" id="userMessage">
+        </div>
+        <button type="submit" class="btnSubmit"> Send Message</button>
+      </form>
     <% } %>
-
-  <div>
-    <ul id="messagesContainer"></ul>
+      <% if ( !admin ) { %>
+        <div class="links my-5">
+          <a href="/chat/<%=email%>"> See only my messages </a>
+        </div>
+      <% } %>
+    <div>
+      <ul id="messagesContainer"></ul>
+    </div>
+    <div class="links">
+      <a href="/products"> Go to products </a>
+    </div>
   </div>
-
-  <a href="/products"> Go to products </a>
-
   <div style="display:none;" id="email"><%=email%></div>
-
   <script src="/socket.io/socket.io.js"></script>
-    <script defer src="main.js"></script>
+  <script defer src="main.js"></script>
 </body>
 </html>
