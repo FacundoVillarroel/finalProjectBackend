@@ -21,12 +21,19 @@
           <div>Product Name</div>
           <div>Price</div>
           <div>Imagen</div>
+          <div>quantity</div>
         </div>
         <% for(let i = 0; i < products.length; i++) { %>
           <div class="productContainer">
             <div><%=products[i].title %></div>
             <div><%=products[i].price %></div>
             <div><img src="<%=products[i].thumbnail %>" alt="<%=products[i].title %>" height="150" width="200"></div>
+            <div id="product<%=products[i].id%>">
+              <form class="formQuantity" action="/cart/<%=products[i].id%>" method="post">
+                <input type="number" name="quantity" class="quantityInput">
+                <button type="submit" class="btnAddProduct"> + </button>
+              </form>
+            </div>
           </div>
         <% } %>  
       </div>
@@ -65,6 +72,7 @@
         <a href="/options"> Go to Options</a>
       <% }%>
       <a href="/chat"> Go to Chat </a>
+      <a href="/cart"> Go to your Cart</a>
     </div>
 </body>
 </html>

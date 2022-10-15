@@ -25,7 +25,7 @@ cartRouter.post("/", authenticateToken, async ( req, res ) => {
 cartRouter.post("/:id", authenticateToken, async ( req, res ) => {
   const idCart = req.user.currentCartId
   const idProduct = parseInt(req.params.id)
-  const quantity = parseInt(req.body.quantity)
+  const quantity = parseInt(req.body.quantity) || parseInt(req.query.quantity)
   const response = await service.addProductToCart( idCart, idProduct, quantity ) 
   if (response) {
     res.status(400).send(response)

@@ -142,3 +142,9 @@
 [2022-10-15T00:39:14.131] [WARN] development - Route: /asdasdasd Method: GET No Implemented
 [2022-10-15T23:36:32.820] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')
 [2022-10-15T23:50:40.935] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')
+[2022-10-16T00:49:16.389] [WARN] development - Route: /cart/1?1=1 Method: GET No Implemented
+[2022-10-16T00:49:50.008] [WARN] development - Route: /cart/1?1=123 Method: GET No Implemented
+[2022-10-16T00:50:07.447] [WARN] development - Route: /cart/1?1=1 Method: GET No Implemented
+[2022-10-16T00:50:31.033] [WARN] development - Route: /cart/1?1=1 Method: GET No Implemented
+[2022-10-16T00:55:24.589] [WARN] development - Route: /1 Method: DELETE No Implemented
+[2022-10-16T00:55:31.957] [WARN] development - Route: /login Method: DELETE No Implemented

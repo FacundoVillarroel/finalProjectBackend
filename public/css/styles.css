@@ -105,3 +105,20 @@ a:hover{
 .brown{
   color: brown;
 }
+
+.formQuantity{
+  width: fit-content
+}
+
+.quantityInput{
+  width: 50px;
+  display: flex;
+}
+
+.btnAddProduct{
+  color: white;
+  margin-top: 10px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background-color: green;
+}
