@@ -12,7 +12,8 @@ const sendEmailNewOrder = (fromEmail, toEmail, order ) => {
             <ul> 
                 ${li}
             </ul>
-          <h2> Shipping Address: ${order.shippingAddress} </h2>`,
+          <h2> Shipping Address: ${order.shippingAddress} </h2>
+          <h2> Total: ${order.total}$ </h2>`,
     subject:`New Purchase from the User: ${order.email}`
 }).then((data)=> {
     console.log("Email enviado");

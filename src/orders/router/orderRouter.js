@@ -25,7 +25,8 @@ orderRouter.post("/", authenticateToken, async ( req, res ) => {
     products: cart.products,
     status:"generated",
     date: new Date(),
-    shippingAddress: cart.shippingAddress
+    shippingAddress: cart.shippingAddress,
+    total:cart.total
   }
   const orderGenerated = await service.createNewOrder(order, user)
   res.send({orderId:orderGenerated.id})

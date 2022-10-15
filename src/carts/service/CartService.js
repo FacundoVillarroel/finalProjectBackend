@@ -24,7 +24,8 @@ class CartService {
         email:email,
         date: new Date(),
         products:[],
-        shippingAddress: shippingAddress
+        shippingAddress: shippingAddress,
+        total:0
       }
       const cartCreated = await this.carts.createCart(cart)
       return cartCreated.id
@@ -42,6 +43,8 @@ class CartService {
       const alreadyInCart = cart.products.find(product => product.id == idProduct)
       if(alreadyInCart) return {error: "The product is already in the cart"}
       cart.products.push(productToAdd)
+      cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
+      console.log(cart.total);
       await this.carts.modifyCart(idCart,cart)
     } catch (err) {
       logger.error(`Error: ${err}`)
@@ -53,6 +56,7 @@ class CartService {
       let cart = await this.carts.getCartById(idcart)
       const productsList = cart.products.filter(product => product.id !== parseInt(idProduct))
       cart.products = productsList
+      cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
       await this.carts.modifyCart(idcart, cart)
     } catch (err) {
       logger.error(`Error: ${err}`)

@@ -7,7 +7,8 @@ const cartSchema = new mongoose.Schema({
   email:{type:String, require:true},
   date:{type:String, require:true},
   products:{type:Array, require:true},
-  shippingAddress:{type:String, require:true}
+  shippingAddress:{type:String, require:true},
+  total:{type:Number, require: true}
 })
 
 let instance = null;

@@ -8,7 +8,8 @@ const ordersSchema = new mongoose.Schema({
   date:{type:String, require:true},
   status:{type:String, require:true},
   email:{type:String, require:true},
-  shippingAddress: {type:String, require: true }
+  shippingAddress: {type:String, require: true },
+  total:{type:Number, require:true}
 })
 
 let instance = null;

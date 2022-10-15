@@ -11,7 +11,8 @@ const {authenticateToken, isAdmin} = require("../../middlewares/auth");
 cartRouter.get("/", authenticateToken, async ( req, res ) => {
   const id = req.user.currentCartId
   const cart = await service.getCart(id)
-  res.send(cart.products)
+  console.log(cart.products);
+  res.render("cart.ejs",{cart})
 })
 
 cartRouter.post("/", authenticateToken, async ( req, res ) => {
