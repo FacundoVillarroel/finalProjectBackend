@@ -55,7 +55,7 @@ class MongoDbContainer {
 
   async deleteById(id){
     try{
-      await this.collection.deleteOne(id)
+      return await this.collection.deleteOne(id)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

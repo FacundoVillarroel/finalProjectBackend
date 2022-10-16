@@ -148,3 +148,8 @@
 [2022-10-16T00:50:31.033] [WARN] development - Route: /cart/1?1=1 Method: GET No Implemented
 [2022-10-16T00:55:24.589] [WARN] development - Route: /1 Method: DELETE No Implemented
 [2022-10-16T00:55:31.957] [WARN] development - Route: /login Method: DELETE No Implemented
+[2022-10-16T21:30:52.887] [WARN] development - Route: /graphql Method: GET No Implemented
+[2022-10-16T21:52:39.309] [ERROR] development - Error: ReferenceError: response is not defined
+[2022-10-16T22:08:00.557] [WARN] development - Route: /unThuymbnail.com Method: GET No Implemented
+[2022-10-16T22:08:02.759] [WARN] development - Route: /graphql Method: GET No Implemented
+[2022-10-16T22:08:17.514] [WARN] development - Route: /unThuymbnail.com Method: GET No Implemented

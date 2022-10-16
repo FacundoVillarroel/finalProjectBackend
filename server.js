@@ -16,6 +16,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const socketServer = require("./src/chat/socket.io/socketServer");
+const graphqlProductRouter = require("./src/products/graphql/graphqlProductRouter")
 
 const reqInfo = require("./src/logs/reqInfo");
 const { authenticateToken, isAdmin } = require("./src/middlewares/auth");
@@ -30,6 +31,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended:false}))
 
 app.use(userRouter)
+app.use(graphqlProductRouter)
 app.use("/products",productRouter)
 app.use("/cart", cartRouter)
 app.use("/orders", orderRouter)

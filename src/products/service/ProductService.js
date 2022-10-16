@@ -36,7 +36,7 @@ class ProductService{
 
   async addProduct (product) {
     try {
-      await this.products.addProduct(product)
+      return await this.products.addProduct(product)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -47,7 +47,8 @@ class ProductService{
       const response = await this.products.modifyProductById(id,productUpdate)
       if (!response.matched) return {error: `there is no product with the id ${id}`}
       if (!response.modified) return {error: `product update was the same as the current product`}
-      return {updatedProduct: productUpdate}
+      productUpdate.id = id
+      return productUpdate
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -55,7 +56,12 @@ class ProductService{
 
   async deleteProduct (id) {
     try {
-      await this.products.deleteProduct(id)
+      const response = await this.products.deleteProduct(id)
+      if (response.deletedCount === 0) {
+        return `there were no products with the id: ${id}`
+      } else {
+        return "Product Deleted Succesfully"
+      }
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
