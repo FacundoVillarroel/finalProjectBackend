@@ -18,7 +18,6 @@ if(userForm){
       const userMessage = {
         email:email,
         type:"user",
-        date: new Date(),
         message:messageContent
       }
       socket.emit("new_message", userMessage)
