@@ -153,3 +153,148 @@
 [2022-10-16T22:08:00.557] [WARN] development - Route: /unThuymbnail.com Method: GET No Implemented
 [2022-10-16T22:08:02.759] [WARN] development - Route: /graphql Method: GET No Implemented
 [2022-10-16T22:08:17.514] [WARN] development - Route: /unThuymbnail.com Method: GET No Implemented
+[2022-10-16T23:54:20.212] [ERROR] development - Error: ValidationError: email: Cast to string failed for value "{
+  email: 'facu@gmail.com',
+  products: [
+    [Object: null prototype] {
+      id: '1',
+      title: 'iPhone 14 pro',
+      price: 1339,
+      thumbnail: 'algo',
+      description: 'description',
+      category: 'iphone',
+      quantity: 1
+    }
+  ],
+  shippingAddress: 'fakeAddress',
+  total: 1339,
+  user: [Object: null prototype] {
+    email: 'facu@gmail.com',
+    currentCartId: 3,
+    address: 'fake'
+  }
+}" (type Object) at path "email", shippingAddress: Cast to string failed for value "{
+  fieldName: 'createNewOrder',
+  fieldNodes: [
+    {
+      kind: 'Field',
+      alias: undefined,
+      name: [Object],
+      arguments: [Array],
+      directives: [],
+      selectionSet: undefined,
+      loc: [Location]
+    }
+  ],
+  returnType: GraphQLScalarType {
+    name: 'ID',
+    description: 'The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.',
+    specifiedByURL: undefined,
+    serialize: [Function: serialize],
+    parseValue: [Function: parseValue],
+    parseLiteral: [Function: parseLiteral],
+    extensions: [Object: null prototype] {},
+    astNode: undefined,
+    extensionASTNodes: []
+  },
+  parentType: GraphQLObjectType {
+    name: 'Mutation',
+    description: undefined,
+    isTypeOf: undefined,
+    extensions: [Object: null prototype] {},
+    astNode: {
+      kind: 'ObjectTypeDefinition',
+      description: undefined,
+      name: [Object],
+      interfaces: [],
+      directives: [],
+      fields: [Array],
+      loc: [Location]
+    },
+    extensionASTNodes: [],
+    _fields: [Object: null prototype] {
+      createNewOrder: [Object],
+      deleteOrderById: [Object]
+    },
+    _interfaces: []
+  },
+  path: { prev: undefined, key: 'createNewOrder', typename: 'Mutation' },
+  schema: GraphQLSchema {
+    __validationErrors: [],
+    description: undefined,
+    extensions: [Object: null prototype] {},
+    astNode: undefined,
+    extensionASTNodes: [],
+    _queryType: GraphQLObjectType {
+      name: 'Query',
+      description: undefined,
+      isTypeOf: undefined,
+      extensions: [Object: null prototype] {},
+      astNode: [Object],
+      extensionASTNodes: [],
+      _fields: [Object: null prototype],
+      _interfaces: []
+    },
+    _mutationType: GraphQLObjectType {
+      name: 'Mutation',
+      description: undefined,
+      isTypeOf: undefined,
+      extensions: [Object: null prototype] {},
+      astNode: [Object],
+      extensionASTNodes: [],
+      _fields: [Object: null prototype],
+      _interfaces: []
+    },
+    _subscriptionType: undefined,
+    _directives: [
+      [GraphQLDirective],
+      [GraphQLDirective],
+      [GraphQLDirective],
+      [GraphQLDirective]
+    ],
+    _typeMap: [Object: null prototype] {
+      product: [GraphQLObjectType],
+      ID: [GraphQLScalarType],
+      String: [GraphQLScalarType],
+      Int: [GraphQLScalarType],
+      order: [GraphQLObjectType],
+      Query: [GraphQLObjectType],
+      productPayload: [GraphQLInputObjectType],
+      userPayload: [GraphQLInputObjectType],
+      Mutation: [GraphQLObjectType],
+      Boolean: [GraphQLScalarType],
+      __Schema: [GraphQLObjectType],
+      __Type: [GraphQLObjectType],
+      __TypeKind: [GraphQLEnumType],
+      __Field: [GraphQLObjectType],
+      __InputValue: [GraphQLObjectType],
+      __EnumValue: [GraphQLObjectType],
+      __Directive: [GraphQLObjectType],
+      __DirectiveLocation: [GraphQLEnumType]
+    },
+    _subTypeMap: [Object: null prototype] {},
+    _implementationsMap: [Object: null prototype] {}
+  },
+  fragments: [Object: null prototype] {},
+  rootValue: {
+    createNewOrder: [AsyncFunction: createNewOrder],
+    getOrderById: [AsyncFunction: getOrderById],
+    deleteOrderById: [AsyncFunction: deleteOrderById]
+  },
+  operation: {
+    kind: 'OperationDefinition',
+    operation: 'mutation',
+    name: undefined,
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: { kind: 'SelectionSet', selections: [Array], loc: [Location] },
+    loc: Location {
+      start: 0,
+      end: 278,
+      startToken: [Token],
+      endToken: [Token],
+      source: [Source]
+    }
+  },
+  variableValues: {}
+}" (type Object) at path "shippingAddress"

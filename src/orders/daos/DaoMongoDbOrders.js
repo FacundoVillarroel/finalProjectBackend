@@ -43,7 +43,7 @@ class DaoMongoDbOrders {
 
   async getOrderById(id){
     try {
-      return await this.mongoClient.getByProperty({id:id})
+      return await this.mongoClient.getById({id:id})
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

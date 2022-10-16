@@ -23,8 +23,6 @@ orderRouter.post("/", authenticateToken, async ( req, res ) => {
   const order = {
     email: req.user.email,
     products: cart.products,
-    status:"generated",
-    date: new Date(),
     shippingAddress: cart.shippingAddress,
     total:cart.total
   }

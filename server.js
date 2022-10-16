@@ -10,6 +10,7 @@ const chatRouter = require("./src/chat/router/messagesRouter");
 const routes = require("./src/routes/routes");
 const graphqlProductRouter = require("./src/products/graphql/graphqlProductRouter");
 const graphqlChatRouter = require("./src/chat/graphql/graphqlChatRouter");
+const graphqlOrdersRouter= require("./src/orders/graphql/graphqlOrdersRouter");
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(userRouter)
 app.use(graphqlProductRouter)
 app.use(graphqlChatRouter)
+app.use(graphqlOrdersRouter)
 app.use("/products",productRouter)
 app.use("/cart", cartRouter)
 app.use("/orders", orderRouter)

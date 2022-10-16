@@ -17,13 +17,15 @@ class OrderService {
 
   async createNewOrder(order, user) {
     try{
-      const orderId = await this.orders.createNewOrder(order)
-      if(orderId) {
+      order.date = new Date()
+      order.status = "generated"
+      const orderGenerated = await this.orders.createNewOrder(order)
+      if(orderGenerated) {
         await cartService.deleteCart(user.currentCartId)
         const newIdCart = await cartService.createCart(user.email, user.address)
         await userService.updateCurrentCartId(user.email, newIdCart)
         sendEmailNewOrder(process.env.GMAIL_ADMIN, process.env.GMAIL_RECIEVER, order)
-        return orderId
+        return orderGenerated.id
       }
       return {error: "error processing the purchase"}
     } catch (err) {
@@ -44,7 +46,12 @@ class OrderService {
   async deleteOrderById(id) {
     try {
       if( isNaN( parseInt(id) )) return {error: "Id must be a number"}
-      return await this.orders.deleteOrderById(id)
+      const response = await this.orders.deleteOrderById(id)
+      if (response.deletedCount === 0) {
+        return `there were no products with the id: ${id}`
+      } else {
+        return "Product Deleted Succesfully"
+      }
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
