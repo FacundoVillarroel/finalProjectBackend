@@ -49,7 +49,7 @@ class DaoMongoDbCarts {
 
   async modifyCart( id, cartUpdate ){
     try {
-      await this.mongoClient.modifyBy("id", id, cartUpdate)
+      return await this.mongoClient.modifyBy("id", id, cartUpdate)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -57,7 +57,7 @@ class DaoMongoDbCarts {
 
   async deleteCart(id){
     try {
-      await this.mongoClient.deleteById({id:id})
+      return await this.mongoClient.deleteById({id:id})
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

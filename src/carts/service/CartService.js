@@ -37,27 +37,31 @@ class CartService {
   async addProductToCart ( idCart, idProduct, quantity ){
     try {
       let product = (await products.findProduct(idProduct))
-      if (!product) return {error: `product with id:${idProduct} not found`}
+      if (!product) return `product with id:${idProduct} not found`
       const productToAdd = {...product.toObject(), quantity:quantity}
       let cart = await this.carts.getCartById(idCart)
       const alreadyInCart = cart.products.find(product => product.id == idProduct)
-      if(alreadyInCart) return {error: "The product is already in the cart"}
+      if(alreadyInCart) return "The product is already in the cart"
       cart.products.push(productToAdd)
       cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
-      console.log(cart.total);
-      await this.carts.modifyCart(idCart,cart)
+      const response = await this.carts.modifyCart(idCart,cart)
+      if (!response.matchedCount) return `there is no cart with the id ${idcart}`
+      return "Product Added to your cart succesfully"
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
   }
 
-  async deleteProductFromCart (idcart, idProduct){
+  async deleteProductFromCart (idCart, idProduct){
     try {
-      let cart = await this.carts.getCartById(idcart)
+      let cart = await this.carts.getCartById(idCart)
       const productsList = cart.products.filter(product => product.id !== parseInt(idProduct))
       cart.products = productsList
       cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
-      await this.carts.modifyCart(idcart, cart)
+      const response = await this.carts.modifyCart(idCart, cart)
+      if (!response.matchedCount) return `there is no cart with the id ${idCart}`
+      if (!response.modifiedCount) return `There was no product with id:${idProduct} in the cart`
+      return "Product Deleted Succesfully"
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -65,7 +69,9 @@ class CartService {
 
   async deleteCart (id){
     try {
-      await this.carts.deleteCart(id)
+      const response = await this.carts.deleteCart(id)
+      if (!response.deletedCount) return `there were no carts with id: ${id}`
+      return `Cart with id: ${id} deleted successfully`
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

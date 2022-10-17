@@ -306,3 +306,5 @@
 [2022-10-17T23:14:34.219] [ERROR] development - Error: Error: data and salt arguments required
 [2022-10-17T23:14:41.227] [ERROR] development - Error: Error: data and salt arguments required
 [2022-10-17T23:14:57.780] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-18T00:00:46.559] [WARN] development - Route: /graphql Method: GET No Implemented
+[2022-10-18T00:00:53.644] [WARN] development - Route: /graphql/carts Method: GET No Implemented
