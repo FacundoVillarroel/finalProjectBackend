@@ -56,7 +56,10 @@ class MemoryContainer {
 
   deleteById( id ) {
     try {
+      let response = {deleted:true}
+      if (!this.getBy("id",id)) response.deleted = false
       this.array = this.array.filter( item => item.id !== id)
+      return response
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

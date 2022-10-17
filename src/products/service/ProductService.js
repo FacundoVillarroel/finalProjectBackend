@@ -57,10 +57,10 @@ class ProductService{
   async deleteProduct (id) {
     try {
       const response = await this.products.deleteProduct(id)
-      if (response.deletedCount === 0) {
-        return `there were no products with the id: ${id}`
-      } else {
+      if (response.deleted) {
         return "Product Deleted Succesfully"
+      } else {
+        return `there were no products with the id: ${id}`
       }
     } catch (err) {
       logger.error(`Error: ${err}`)

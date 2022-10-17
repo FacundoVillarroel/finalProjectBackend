@@ -38,8 +38,8 @@ class UserService {
     try {
       const response = await this.users.modifyUser(email, {currentCartId: idCart})
       console.log(response);
-      if (!response.matchedCount) return `there is no user with the email ${email}`
-      if (!response.modifiedCount) return `idCart:${idCart} was the same as the current one`
+      if (!response.matched) return `there is no user with the email ${email}`
+      if (!response.modified) return `idCart:${idCart} was the same as the current one`
       return "Id Cart modifiend succesfully"
     } catch (err) {
       logger.error(`Error: ${err}`)

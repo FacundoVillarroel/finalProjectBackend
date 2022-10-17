@@ -47,10 +47,10 @@ class OrderService {
     try {
       if( isNaN( parseInt(id) )) return {error: "Id must be a number"}
       const response = await this.orders.deleteOrderById(id)
-      if (response.deletedCount === 0) {
-        return `there were no products with the id: ${id}`
-      } else {
+      if (response.deleted) {
         return "Product Deleted Succesfully"
+      } else {
+        return `there were no products with the id: ${id}`
       }
     } catch (err) {
       logger.error(`Error: ${err}`)

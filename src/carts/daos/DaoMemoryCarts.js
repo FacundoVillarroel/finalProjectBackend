@@ -39,7 +39,7 @@ class DaoMemoryCarts {
 
   deleteCart(id){
     try {
-      this.memoryClient.deleteById( id )
+      return this.memoryClient.deleteById( id )
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

@@ -66,10 +66,7 @@ class DaoMongoDbProduct {
 
   async modifyProductById(id, productUpdate) {
     try{
-      const response = await this.mongoClient.modifyBy("id",id,productUpdate)
-      const modified = response.modifiedCount !== 0;
-      const matched = response.matchedCount !== 0;
-      return ({modified, matched})
+      return await this.mongoClient.modifyBy("id",id,productUpdate)
     } catch(err) {
       logger.error(`Error: ${err}`)
     }

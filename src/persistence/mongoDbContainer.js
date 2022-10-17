@@ -47,7 +47,10 @@ class MongoDbContainer {
 
   async modifyBy(param,id,update) {
     try{
-      return await this.collection.updateOne({[param]:id},{$set:{...update}})
+      const response = await this.collection.updateOne({[param]:id},{$set:{...update}})
+      const modified = response.modifiedCount !== 0;
+      const matched = response.matchedCount !== 0;
+      return ({modified, matched})
     } catch(err){
       logger.error(`Error: ${err}`)
     }
@@ -55,7 +58,9 @@ class MongoDbContainer {
 
   async deleteById(id){
     try{
-      return await this.collection.deleteOne(id)
+      const response = await this.collection.deleteOne(id)
+      const deleted = response.deletedCount !== 0
+      return ({deleted})
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
@@ -63,7 +68,9 @@ class MongoDbContainer {
 
   async deleteAll(){
     try {
-      await this.collection.deleteMany()
+      const response = await this.collection.deleteMany()
+      const deleted = response.deletedCount !== 0
+      return ({deleted})
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

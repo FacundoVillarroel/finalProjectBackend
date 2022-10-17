@@ -45,7 +45,7 @@ class CartService {
       cart.products.push(productToAdd)
       cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
       const response = await this.carts.modifyCart(idCart,cart)
-      if (!response.matchedCount) return `there is no cart with the id ${idcart}`
+      if (!response.matched) return `there is no cart with the id ${idcart}`
       return "Product Added to your cart succesfully"
     } catch (err) {
       logger.error(`Error: ${err}`)
@@ -59,8 +59,8 @@ class CartService {
       cart.products = productsList
       cart.total = cart.products.reduce((accum, product) => accum += product.price * product.quantity, 0)
       const response = await this.carts.modifyCart(idCart, cart)
-      if (!response.matchedCount) return `there is no cart with the id ${idCart}`
-      if (!response.modifiedCount) return `There was no product with id:${idProduct} in the cart`
+      if (!response.matched) return `there is no cart with the id ${idCart}`
+      if (!response.modified) return `There was no product with id:${idProduct} in the cart`
       return "Product Deleted Succesfully"
     } catch (err) {
       logger.error(`Error: ${err}`)
@@ -70,7 +70,7 @@ class CartService {
   async deleteCart (id){
     try {
       const response = await this.carts.deleteCart(id)
-      if (!response.deletedCount) return `there were no carts with id: ${id}`
+      if (!response.deleted) return `there were no carts with id: ${id}`
       return `Cart with id: ${id} deleted successfully`
     } catch (err) {
       logger.error(`Error: ${err}`)
