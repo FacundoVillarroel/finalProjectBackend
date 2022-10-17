@@ -5,17 +5,11 @@ const logger = require("../logs/logger");
 const UserService = require("../users/service/UserService")
 const userService = new UserService(process.env.DATA_BASE_USERS)
 
-const CartService = require("../carts/service/CartService");
-const { sendEmailNewUser } = require("../nodemailer/helpers/helpers");
-const cartService = new CartService(process.env.DATA_BASE_CARTS)
-
 const registration = async ( req, res, next ) => {
   if(req.body.password !== req.body.repeatPassword){
     res.render("failRegister.ejs", {error:"the passwords doesn't match"})
   } else {
     try{
-      const hashedPasword = await bcrypt.hash(req.body.password,10)
-      const idCart = await cartService.createCart(req.body.email, req.body.address)
       console.log(idCart);
       const user = {
         email: req.body.email ,
@@ -23,12 +17,9 @@ const registration = async ( req, res, next ) => {
         surname: req.body.surname,
         tel: req.body.tel,
         address:req.body.address,
-        password:hashedPasword,
-        currentCartId: idCart
+        password:req.body.password
       }
-
       await userService.addNewUser(user)
-      sendEmailNewUser(process.env.GMAIL_ADMIN, process.env.GMAIL_RECIEVER, user )
       next()
     } catch(err){
       logger.error(`Error: ${err}`)

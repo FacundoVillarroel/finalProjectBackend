@@ -298,3 +298,11 @@
   },
   variableValues: {}
 }" (type Object) at path "shippingAddress"
+[2022-10-17T22:55:07.405] [WARN] development - Route: /graphql/users Method: GET No Implemented
+[2022-10-17T22:58:11.415] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')
+[2022-10-17T23:12:31.701] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-17T23:13:50.663] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-17T23:14:06.732] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-17T23:14:34.219] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-17T23:14:41.227] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-17T23:14:57.780] [ERROR] development - Error: Error: data and salt arguments required

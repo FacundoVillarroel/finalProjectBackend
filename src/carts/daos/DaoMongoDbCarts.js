@@ -49,7 +49,7 @@ class DaoMongoDbCarts {
 
   async modifyCart( id, cartUpdate ){
     try {
-      await this.mongoClient.modifyById(id,cartUpdate)
+      await this.mongoClient.modifyBy("id", id, cartUpdate)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }

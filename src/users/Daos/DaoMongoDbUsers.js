@@ -53,7 +53,7 @@ class DaoMongoDbUsers {
 
   async modifyUser(email, update) {
     try {
-      return await this.mongoClient.modifyById(email, update)
+      return await this.mongoClient.modifyBy("email",email, update)
     } catch (err) {
       logger.error(`Error: ${err}`)
     }
