@@ -4,7 +4,7 @@ class MemoryContainer {
   
   constructor(){
     this.idCounter = 0;
-    this.array = [{"_id":"63457bf5aab362bd94a2adcb","email":"test@gmail.com","name":"Test","surname":"first","tel":12345678,"password":"$2b$10$sUATkgPFh/nHUKCLrmi1Be.RLg8ZYl/fN2yb67s0bbRq3MpOdNJHa","currentCartId":2,"address":"Av. siempreviva","__v":0}]
+    this.array = []
   }
 
   getAll() {
