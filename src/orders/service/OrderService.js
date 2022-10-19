@@ -15,10 +15,17 @@ class OrderService {
     this.orders = daoFactory.create(type)
   }
 
-  async createNewOrder(order, user) {
+  async createNewOrder(user) {
     try{
-      order.date = new Date()
-      order.status = "generated"
+      const cart = await cartService.getCart(user.currentCartId);
+      const order = {
+        email: user.email,
+        products: cart.products,
+        shippingAddress: cart.shippingAddress,
+        total:cart.total,
+        date: new Date(),
+        status: "generated"
+      }
       const orderGenerated = await this.orders.createNewOrder(order)
       if(orderGenerated) {
         await cartService.deleteCart(user.currentCartId)
@@ -48,9 +55,9 @@ class OrderService {
       if( isNaN( parseInt(id) )) return {error: "Id must be a number"}
       const response = await this.orders.deleteOrderById(id)
       if (response.deleted) {
-        return "Product Deleted Succesfully"
+        return "Order Deleted Succesfully"
       } else {
-        return `there were no products with the id: ${id}`
+        return `there were no Orders with the id: ${id}`
       }
     } catch (err) {
       logger.error(`Error: ${err}`)

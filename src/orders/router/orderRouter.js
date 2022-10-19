@@ -6,9 +6,6 @@ orderRouter.use( express.json() );
 const OrderService = require("../service/OrderService");
 const service = new OrderService(process.env.DATA_BASE_ORDERS)
 
-const CartService = require("../../carts/service/CartService")
-const cartService = new CartService (process.env.DATA_BASE_CARTS)
-
 const {authenticateToken, isAdmin} = require("../../middlewares/auth");
 
 orderRouter.get("/:id", authenticateToken, async ( req, res ) => {
@@ -19,14 +16,7 @@ orderRouter.get("/:id", authenticateToken, async ( req, res ) => {
 
 orderRouter.post("/", authenticateToken, async ( req, res ) => {
   const user = req.user
-  const cart = await cartService.getCart(user.currentCartId);
-  const order = {
-    email: req.user.email,
-    products: cart.products,
-    shippingAddress: cart.shippingAddress,
-    total:cart.total
-  }
-  const orderGenerated = await service.createNewOrder(order, user)
+  const orderGenerated = await service.createNewOrder(user)
   res.send({orderId:orderGenerated.id})
 })
 

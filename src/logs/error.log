@@ -209,3 +209,7 @@
 [2022-10-17T23:14:34.219] [ERROR] development - Error: Error: data and salt arguments required
 [2022-10-17T23:14:41.227] [ERROR] development - Error: Error: data and salt arguments required
 [2022-10-17T23:14:57.780] [ERROR] development - Error: Error: data and salt arguments required
+[2022-10-19T23:56:34.077] [ERROR] development - Error: ReferenceError: idCart is not defined
+[2022-10-19T23:57:04.335] [ERROR] development - Error: ReferenceError: idCart is not defined
+[2022-10-19T23:57:13.348] [ERROR] development - Error: ReferenceError: idCart is not defined
+[2022-10-20T00:02:50.389] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')

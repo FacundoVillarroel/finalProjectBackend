@@ -1,10 +1,8 @@
 const OrderService = require("../service/OrderService");
 const service = new OrderService(process.env.DATA_BASE_ORDERS)
 
-const createNewOrder = async (args) => {
-  const { email, products, shippingAddress, total, user } = args
-  const order = { email, products, shippingAddress, total }
-  return await service.createNewOrder(order, user)
+const createNewOrder = async ({user}) => {
+  return await service.createNewOrder(user)
 }
 
 const getOrderById = async ( {id} ) => {

@@ -10,7 +10,6 @@ const registration = async ( req, res, next ) => {
     res.render("failRegister.ejs", {error:"the passwords doesn't match"})
   } else {
     try{
-      console.log(idCart);
       const user = {
         email: req.body.email ,
         name: req.body.name,

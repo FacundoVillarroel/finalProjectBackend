@@ -11,7 +11,6 @@ const {authenticateToken, isAdmin} = require("../../middlewares/auth");
 cartRouter.get("/", authenticateToken, async ( req, res ) => {
   const id = req.user.currentCartId
   const cart = await service.getCart(id)
-  console.log(cart.products);
   res.render("cart.ejs",{cart})
 })
 
@@ -26,19 +25,23 @@ cartRouter.post("/:id", authenticateToken, async ( req, res ) => {
   const idCart = req.user.currentCartId
   const idProduct = parseInt(req.params.id)
   const quantity = parseInt(req.body.quantity)
-  const response = await service.addProductToCart( idCart, idProduct, quantity ) 
-  if (response) {
+  const response = await service.addProductToCart( idCart, idProduct, quantity )
+  if (response !== "Product Added to your cart succesfully") {
     res.status(400).send(response)
   } else {
-    res.send("Product added to cart successfully ")
+    res.send(response)
   }
 })
 
 cartRouter.delete("/:id", authenticateToken, async ( req, res ) => {
   const idProd = req.params.id;
   const idCart = req.user.currentCartId;
-  await service.deleteProductFromCart(idCart, idProd )
-  res.send("Product removed from cart")
+  const response = await service.deleteProductFromCart(idCart, idProd )
+  if (response !== "Product Deleted Succesfully"){
+    res.status(400).send(response)
+  } else {
+    res.send(response)
+  }
 })
 
 cartRouter.delete("/",authenticateToken, isAdmin, async ( req, res ) => {

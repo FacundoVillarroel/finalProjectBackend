@@ -37,7 +37,6 @@ class UserService {
   async updateCurrentCartId(email, idCart){
     try {
       const response = await this.users.modifyUser(email, {currentCartId: idCart})
-      console.log(response);
       if (!response.matched) return `there is no user with the email ${email}`
       if (!response.modified) return `idCart:${idCart} was the same as the current one`
       return "Id Cart modifiend succesfully"
