@@ -49,7 +49,6 @@ class UserService {
     try{
       return this.users.getAllUsers()
     } catch(err){
-      console.log(err);
       logger.error(`Error: ${err}`)
     }
   }

@@ -2,6 +2,11 @@ require("dotenv").config()
 
 const express = require("express");
 const cookieParser = require("cookie-parser")
+const cluster = require("cluster");
+
+const os = require("os");
+const numCPU = os.cpus().length;
+
 const userRouter = require("./src/users/router/userRouter")
 const productRouter = require("./src/products/router/productRouter");
 const cartRouter = require("./src/carts/router/cartRouter");
@@ -54,7 +59,16 @@ app.use(routes.error)
 
 const PORT = process.env.PORT || 8080
 
-server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-})
-
+if ( process.env.MODE == "cluster") {
+  if(cluster.isPrimary) {
+      for (let i = 0; i < numCPU; i++){
+          cluster.fork()
+      }
+  } else {
+      server.listen(PORT, () => {})
+  }
+} else {
+  server.listen(PORT, () => {
+      console.log(`Server listening on port ${server.address().port}`);
+  })
+}
