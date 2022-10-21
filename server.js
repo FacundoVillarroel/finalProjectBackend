@@ -39,6 +39,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended:false}))
 
+app.use("/info", authenticateToken, isAdmin, routes.getInfo)
 app.use(userRouter)
 app.use(graphqlProductRouter)
 app.use(graphqlChatRouter)
