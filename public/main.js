@@ -1,4 +1,5 @@
-const socket = io();
+let url = (window.location.href).split("/chat")
+const socket = io(url[0], { transports: ["websocket"] });
 
 const userForm = document.getElementById("userMessageForm")
 const inputUserMessage = document.getElementById("userMessage")
