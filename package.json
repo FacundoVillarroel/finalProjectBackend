@@ -7,9 +7,6 @@
     "start": "node api/index.js",
     "devStart": "nodemon server.js"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -33,7 +30,7 @@
     "nodemon": "^2.0.20"
   },
   "engines": {
-    "node": "^16.14.0",
+    "node": "^18.x",
     "npm": "^8.3.1"
   }
 }
