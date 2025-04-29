@@ -1,0 +1,2 @@
+[2025-04-29T14:51:57.131] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')
+[2025-04-29T14:52:00.241] [ERROR] development - Error: TypeError: Cannot read properties of undefined (reading 'toJSON')
