@@ -1,11 +1,12 @@
 const fs = require("fs");
+const path = require("path");
 const { buildSchema } = require("graphql");
 const { graphqlHTTP } = require("express-graphql");
 const { Router } = require("express");
 const { createNewOrder, getOrderById, deleteOrderById } = require("./resolver");
 
 const schemaString = fs
-  .readFileSync("./api/src/orders/graphql/orders.gql")
+  .readFileSync(path.join(__dirname, "orders.gql"))
   .toString();
 const compiledSchema = buildSchema(schemaString);
 const { authenticateToken } = require("../../middlewares/auth");
