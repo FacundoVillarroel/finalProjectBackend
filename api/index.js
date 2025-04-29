@@ -41,7 +41,7 @@ app.use(graphqlCartsRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
 app.use("/orders", orderRouter);
-app.use("/chat", chatRouter);
+/* app.use("/chat", chatRouter); */
 app.use("/options", authenticateToken, isAdmin, routes.getOptions);
 
 app.use(routes.error);
