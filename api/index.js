@@ -8,7 +8,7 @@ const userRouter = require("./src/users/router/userRouter");
 const productRouter = require("./src/products/router/productRouter");
 const cartRouter = require("./src/carts/router/cartRouter");
 const orderRouter = require("./src/orders/router/orderRouter");
-const chatRouter = require("./src/chat/router/messagesRouter");
+/* const chatRouter = require("./src/chat/router/messagesRouter"); */
 const routes = require("./src/routes/routes");
 const graphqlProductRouter = require("./src/products/graphql/graphqlProductRouter");
 const graphqlChatRouter = require("./src/chat/graphql/graphqlChatRouter");
@@ -22,7 +22,7 @@ const reqInfo = require("./src/logs/reqInfo");
 const { authenticateToken, isAdmin } = require("./src/middlewares/auth");
 
 app.set("views", path.join(__dirname, "views"));
-app.set("view-engine", "ejs");
+app.set("view engine", "ejs");
 
 app.use(reqInfo);
 
